@@ -3,6 +3,11 @@
 require_relative "checkout_sdk/version"
 
 module CheckoutSdk
-  class Error < StandardError; end
-  # Your code goes here...
+  class << self
+  end
+
+  def self.builder
+    DefaultSdk
+  end
+
 end

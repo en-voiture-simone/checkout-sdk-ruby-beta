@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require "checkout_sdk"
+require 'checkout_sdk/checkout_sdk_builder'
+require 'checkout_sdk/configuration/environment'
+require 'checkout_sdk/default_sdk'
+require 'checkout_sdk/static_keys_builder'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

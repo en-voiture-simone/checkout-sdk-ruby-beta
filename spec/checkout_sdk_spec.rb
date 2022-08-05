@@ -5,7 +5,13 @@ RSpec.describe CheckoutSdk do
     expect(CheckoutSdk::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "builds default_sdk properly" do
+    default_sdk = CheckoutSdk::builder.build do |builder|
+      builder.with_environment(Environment.production)
+      builder.with_secret_key("secret")
+      builder.with_public_key("public")
+    end
+
+    expect(default_sdk.class).to eq(CheckoutApi)
   end
 end
