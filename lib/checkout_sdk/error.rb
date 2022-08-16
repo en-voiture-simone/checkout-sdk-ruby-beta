@@ -27,7 +27,7 @@ module CheckoutSdk
 
     def initialize(response)
       @http_metadata = CheckoutUtils.map_to_http_metadata(response)
-      if !http_metadata.body.nil?
+      if !http_metadata.body.nil? && http_metadata.body != ""
         @error_details = JSON.parse(http_metadata.body, object_class: OpenStruct)
       end
       super("The API response status code (#{http_metadata.status_code}) does not indicate success.")

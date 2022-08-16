@@ -57,7 +57,7 @@ module CheckoutSdk
       end
 
       # TODO include http metadata response
-      if !response.body.nil?
+      if !response.body.nil? && response.body != ''
         JSON.parse(response.body, object_class: OpenStruct)
       end
     end

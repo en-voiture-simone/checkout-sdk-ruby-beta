@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 require "checkout_sdk"
 require 'checkout_sdk/error'
+require './spec/support/data_factory'
+require './spec/support/sandbox_test_fixture'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,4 +14,7 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include Helpers::DataFactory
+  config.include Helpers::SandboxTestFixture
 end

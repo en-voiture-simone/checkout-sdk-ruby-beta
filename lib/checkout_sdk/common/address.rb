@@ -8,5 +8,6 @@ module CheckoutSdk
                     :zip,
                     :country
     end
+
   end
 end
