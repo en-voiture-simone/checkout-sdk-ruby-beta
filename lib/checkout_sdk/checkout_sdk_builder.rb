@@ -1,12 +1,13 @@
-require 'checkout_sdk/configuration/environment'
+module CheckoutSdk
+  class CheckoutSdkBuilder
 
-class CheckoutSdkBuilder
-  attr_accessor :environment
+    def static_keys
+      CheckoutSdk::DefaultSdk::CheckoutStaticKeysSdkBuilder.new
+    end
 
-  # http_client
+    def previous
+      CheckoutSdk::PreviousSdk::CheckoutPreviousSdkBuilder.new
+    end
 
-  def with_environment(environment)
-    @environment = environment
   end
-
 end
