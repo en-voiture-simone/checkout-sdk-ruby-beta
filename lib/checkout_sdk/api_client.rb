@@ -48,11 +48,7 @@ module CheckoutSdk
         headers[':Cko - Idempotency - Key'] = idempotency_key
       end
 
-      # TODO implement pretty this serializer
-      hash = Hash.new
-      body.instance_variables.each do |v|
-        hash[v.to_s.delete("@")] = body.instance_variable_get(v)
-      end
+      hash = CheckoutSdk::JsonSerializer.to_custom_hash(body)
 
       begin
         response = @client.run_request(method, path, hash.to_json, headers)

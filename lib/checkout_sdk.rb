@@ -10,8 +10,9 @@ require 'faraday/net_http'
 require "checkout_sdk/version"
 
 #Configuration
-require 'checkout_sdk/http_metadata.rb'
-require 'checkout_sdk/checkout_utils.rb'
+require 'checkout_sdk/json_serializer'
+require 'checkout_sdk/http_metadata'
+require 'checkout_sdk/checkout_utils'
 require 'checkout_sdk/error'
 require 'checkout_sdk/platform_type'
 require 'checkout_sdk/environment'

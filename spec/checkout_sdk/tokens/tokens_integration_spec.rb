@@ -13,9 +13,9 @@ RSpec.describe CheckoutSdk::Tokens do
                       .build
 
       request = CheckoutSdk::Tokens::CardTokenRequest.new
-      request.number='4242424242424242'
-      request.expiry_month=6
-      request.expiry_year=2025
+      request.number = '4242424242424242'
+      request.expiry_month = 6
+      request.expiry_year = 2025
 
       response = default_sdk.tokens_client.request_card_token(request)
 
