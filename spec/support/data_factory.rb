@@ -8,6 +8,7 @@ module Helpers
     CARD_NUMBER = '4242424242424242'
     EXPIRY_MONTH = 6
     EXPIRY_YEAR = 2025
+    NAME = 'Test Name'
 
     attr_reader :address,
                 :phone
