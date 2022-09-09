@@ -44,9 +44,7 @@ module CheckoutSdk
         'Authorization': authorization.get_authorization_header,
         'Content-Type': 'application/json' }
 
-      if !idempotency_key.nil?
-        headers[':Cko - Idempotency - Key'] = idempotency_key
-      end
+      headers[:'Cko-Idempotency-Key'] = idempotency_key unless idempotency_key.nil?
 
       hash = CheckoutSdk::JsonSerializer.to_custom_hash(body)
 

@@ -2,7 +2,6 @@ require 'rspec'
 require 'checkout_sdk/common/account_holder'
 require 'checkout_sdk/common/customer_request'
 require 'checkout_sdk/tokens/card_token_request'
-require 'checkout_sdk/instruments/create/customer_instrument_request'
 require 'checkout_sdk/instruments/create/instrument_token_request'
 require 'checkout_sdk/instruments/update/update_instrument_request'
 require 'checkout_sdk/instruments/update/update_instrument_card_request'
@@ -127,11 +126,11 @@ end
 
 def create_token
   request = CheckoutSdk::Tokens::CardTokenRequest.new
-  request.number = Helpers::DataFactory::CARD_NUMBER
-  request.expiry_month = Helpers::DataFactory::EXPIRY_MONTH
-  request.expiry_year = Helpers::DataFactory::EXPIRY_YEAR
+  request.number = visa_card.card_number
+  request.expiry_month = visa_card.expiry_month
+  request.expiry_year = visa_card.expiry_year
 
-  token = default_sdk.tokens_client.request_card_token(request)
+  token = default_sdk.tokens_client.request_token(request)
   token
 end
 

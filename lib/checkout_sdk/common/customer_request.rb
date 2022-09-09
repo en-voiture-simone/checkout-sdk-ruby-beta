@@ -4,7 +4,9 @@ module CheckoutSdk
       attr_accessor :id,
                     :email,
                     :name,
-                    :phone #common.Phone
+                    :tax_number,
+                    :phone,
+                    :default
     end
 
   end

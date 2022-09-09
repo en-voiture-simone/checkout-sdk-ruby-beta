@@ -13,13 +13,10 @@ module CheckoutSdk
     end
 
     def build
-      if environment.nil?
-        with_environment(Environment.sandbox)
-      end
+      with_environment(Environment.sandbox) if environment.nil?
       if !http_client.nil? && !@http_client.instance_of?(Faraday::Connection)
-        raise CheckoutArgumentException.new 'HttpClient must be an instance of Faraday::Connection'
+        raise CheckoutArgumentException, 'HttpClient must be an instance of Faraday::Connection'
       end
     end
-
   end
 end

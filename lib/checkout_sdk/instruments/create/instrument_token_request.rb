@@ -5,15 +5,20 @@ module CheckoutSdk
   module DefaultSdk
     module Instruments
       class InstrumentTokenRequest < InstrumentRequest
+        # @!attribute token
+        #   @return [String]
+        # @!attribute account_holder
+        #   @return [CheckoutSdk::Common::AccountHolder]
+        # @!attribute customer
+        #   @return [CheckoutSdk::Common::CustomerRequest]
         attr_accessor :token,
-                      :account_holder, #common.AccountHolder
-                      :customer #CustomerInstrumentRequest
+                      :account_holder,
+                      :customer
 
         def initialize
           super CheckoutSdk::Common::InstrumentType::TOKEN
         end
       end
-
     end
   end
 end

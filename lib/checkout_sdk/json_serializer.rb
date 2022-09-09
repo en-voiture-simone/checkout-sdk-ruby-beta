@@ -1,51 +1,49 @@
 module CheckoutSdk
   class JsonSerializer
-
-    #TODO implement keys transformation - example: 3ds
+    KEYS_TRANSFORMATIONS = { three_ds: '3ds',
+                             account_holder_type: 'account-holder-type',
+                             payment_network: 'payment-network',
+                             from_: 'from' }
 
     def self.to_custom_hash(object)
-      hash = Hash.new
+      hash = {}
       object.instance_variables.each do |v|
         value = object.instance_variable_get(v)
         value = serialize_by_type(value)
-        hash[v.to_s.delete("@")] = value
+        hash[keys_transformation(v)] = value
       end
-      return hash
+      hash
     end
 
-    private
+    def self.keys_transformation(key_name)
+      key = key_name.to_s.delete('@')
+      return KEYS_TRANSFORMATIONS[key.to_sym] if KEYS_TRANSFORMATIONS.key?(key.to_sym)
+      return key
+    end
+
     def self.serialize_array(input_array)
-      aux_array = Array.new
+      aux_array = []
       input_array.map do |value|
         value = serialize_by_type(value)
         aux_array.append(value)
       end
-      return aux_array
+      aux_array
     end
 
-    private
     def self.serialize_hash(input_hash)
-      aux_hash = Hash.new
+      aux_hash = {}
       input_hash.map do |key, value|
         value = serialize_by_type(value)
         aux_hash[key] = value
       end
-      return aux_hash
+      aux_hash
     end
 
-    private
     def self.serialize_by_type(value)
-      if value.is_a?(Array)
-        value = self.serialize_array(value)
-      end
-      if value.is_a?(Hash)
-        value = self.serialize_hash(value)
-      end
-      if value.class.name.start_with? CheckoutSdk.name
-        value = self.to_custom_hash(value)
-      end
+      value = serialize_array(value) if value.is_a?(Array)
+      value = serialize_hash(value) if value.is_a?(Hash)
+      value = to_custom_hash(value) if value.class.name.start_with? CheckoutSdk.name
       value
     end
-
   end
 end

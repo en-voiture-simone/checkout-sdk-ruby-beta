@@ -12,9 +12,9 @@ module CheckoutSdk
       when PlatformType::PREVIOUS, PlatformType::CUSTOM
         @credential
       when PlatformType::DEFAULT, PlatformType::OAUTH
-        "Bearer " + @credential
+        'Bearer ' + @credential
       else
-        raise CheckoutAuthorizationException.new "Invalid platform type"
+        raise CheckoutAuthorizationException, 'Invalid platform type'
       end
     end
   end
